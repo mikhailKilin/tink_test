@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {LineScale} from './utils'
-const lineTick = () => {
-}
+
 const renderLineTicks = (maxY, tick, lineScale, lineWidth) => {
   let numbTicks = []
   for (let i = 0; i <= maxY; i += tick) {
@@ -11,7 +10,7 @@ const renderLineTicks = (maxY, tick, lineScale, lineWidth) => {
     return (
       <g key={currTick} className="tick" opacity="1" transform={`translate(0,${lineScale.map(currTick)})`}>
         <line className="horizontal-line" stroke="#000" x2={lineWidth}></line>
-        <text fill="#000" textAnchor="end" x="-12">{currTick}</text>
+        <text className="text-font" fill="#000" textAnchor="end" x="-12">{currTick}</text>
       </g>
     )
   })
@@ -28,8 +27,7 @@ export default class HorizontalLines extends Component {
     let lineWidth = this.props.width - margin.left - margin.right
     return (
       <g fill="none"
-         className="horizontal-line-group"
-         transform={`translate(${margin.left}, ${margin.top})`}>
+         className="text-font">
         {renderLineTicks(this.props.maxY, this.props.tick, this.lineScale, lineWidth)}
       </g>
     )

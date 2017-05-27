@@ -1,0 +1,15 @@
+.main-rect__fill {
+    fill: rgb(246, 247, 248);
+}
+.main {
+    margin: 10px;
+}
+.horizontal-line-group {
+    font-size: 11px;
+    font-family: sans-serif;
+}
+.horizontal-line {
+    stroke: lightgrey;
+    stroke-opacity: 0.7;
+    shape-rendering: geometricPrecision;
+}

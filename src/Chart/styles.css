@@ -60,7 +60,12 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
+}
+.tooltip__percents_positive {
     color: forestgreen;
+}
+.ooltip__percents_negative {
+    color: red;
 }
 
 .tooltip_triangle {

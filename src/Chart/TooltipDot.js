@@ -1,14 +1,20 @@
 import React from 'react'
+import TooltipInfo from './TooltipInfo'
 
-const tooltipDot = ({coordinates: {x, y}, params}) => {
-  return (
-    <g transform={`translate(${x}, ${y})`}>
-      <line y2={params.height - y - params.margin.bottom}
-            className="tooltip__line"></line>
-      <circle r="5" fillOpacity="1" fill="rgb(246, 247, 248)"/>
-      <circle r="3" className="circle_fill"/>
-    </g>
-  )
+const tooltipDot = ({coordinates, params, data}) => {
+  if (coordinates === null) {
+    return null
+  } else {
+    return (
+      <g transform={`translate(${coordinates.x}, ${coordinates.y})`}>
+        <line y2={params.height - coordinates.y - params.margin.bottom}
+              className="tooltip__line"></line>
+        <circle r="5" fillOpacity="1" fill="rgb(246, 247, 248)"/>
+        <circle r="3" className="circle_fill"/>
+        {TooltipInfo(coordinates, params, data)}
+      </g>
+    )
+  }
 }
 
 export default tooltipDot

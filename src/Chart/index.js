@@ -3,8 +3,8 @@ import HorizontalLines from './HorizontalLines'
 import XAxis from './XAxis'
 import LinePath from './LinePath'
 import TooltipDot from './TooltipDot'
-import TooltipInfo from './TooltipInfo'
-import {generateData, months, TimeScale, LineScale, max} from './utils'
+import { TimeScale, LineScale, max} from './utils'
+import { generateData, months } from './data'
 import './styles.css'
 const margin = {
   top: 12, right: 20, bottom: 88, left: 35
@@ -23,8 +23,7 @@ export default class Chart extends Component {
     this.state = {
       months: months,
       data: generateData(),
-      coordinates: {x: 0, y: 0},
-      tooltip: {x: 0, y: 0},
+      coordinates: null,
       currIndex: 0
     }
     let chartWidth = width - margin.left - margin.right
@@ -61,6 +60,10 @@ export default class Chart extends Component {
         coordinates: coordinates,
         currIndex: tooltipIndex
       })
+    } else {
+      this.setState({
+        coordinates: null
+      })
     }
   }
 
@@ -69,7 +72,10 @@ export default class Chart extends Component {
     return (
       <div>
         <div className="main">
-          <svg width={width} height={height} onMouseMove={this.mouseMove} ref={container => this.svg = container}>
+          <svg width={width} height={height}
+               onMouseMove={this.mouseMove}
+               ref={container => this.svg = container}
+               cursor="pointer">
             <g transform={`translate(0,0)`}>
               <rect className="main-rect__fill" width={width} height={height}/>
             </g>
@@ -79,8 +85,11 @@ export default class Chart extends Component {
               <LinePath data={this.state.data}
                         timeScale={this.timeScale}
                         lineScale={this.lineScale}/>
-              <TooltipDot coordinates={this.state.coordinates} params={params} timeScale={this.timeScale}/>
-              <TooltipInfo coordinates={this.state.coordinates} data={currData} params={params}/>
+              <TooltipDot coordinates={this.state.coordinates}
+                          params={params}
+                          timeScale={this.timeScale}
+                          data={currData}
+              />
             </g>
           </svg>
         </div>

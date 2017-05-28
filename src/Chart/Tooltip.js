@@ -1,8 +1,8 @@
 import React from 'react'
 import TooltipInfo from './TooltipInfo'
 
-const tooltip = ({coordinates, params, data}) => {
-  if (coordinates === null) {
+const tooltip = ({hide, coordinates, params, data}) => {
+  if (hide) {
     return null
   } else {
     return (

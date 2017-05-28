@@ -8,8 +8,8 @@ const posTriangle = (
 )
 const neg = 'tooltip__percents_negative'
 const negTriangle = (
-    <div className="tooltip_triangle">&#x25BC;</div>
-  )
+  <div className="tooltip_triangle">&#x25BC;</div>
+)
 const formatDate = (date) => {
   return `${date.getDate()} ${inclinMonths[date.getMonth()]} ${date.getFullYear()}`
 }
@@ -29,9 +29,7 @@ const getXYCoord = (x, y, params) => {
   return {xIncr, yIncr}
 }
 const getPercentsClass = (percents) => {
-  let result = percents > 0 ? pos : neg
-  console.log('res', result, percents)
-  return result
+  return percents > 0 ? pos : neg
 }
 const tooltipInfo = (coordinates, params, data) => {
   let coordsIncrs = getXYCoord(coordinates.x, coordinates.y, params)

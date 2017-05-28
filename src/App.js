@@ -3,7 +3,7 @@ import Chart from './Chart'
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
         <Chart/>
       </div>
     );

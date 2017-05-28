@@ -3,13 +3,14 @@ import {LineScale} from './utils'
 export default class XAxis extends PureComponent {
   constructor(props) {
     super(props)
-    let margin = this.props.margin
+    let margin = this.props.params.margin
     let months = this.props.months
-    let rengeLength = (this.props.width - margin.right) / months.length
+    let width = this.props.params.width
+    let rengeLength = (width - margin.right) / months.length
     let halfRengeLength = rengeLength / 2
     this.timeScale = new LineScale()
       .setDomain([0, months.length - 1])
-      .setRange([halfRengeLength, this.props.width - margin.right - halfRengeLength - margin.left])
+      .setRange([halfRengeLength, width - margin.right - halfRengeLength - margin.left])
   }
 
   renderAxisData() {
@@ -23,10 +24,11 @@ export default class XAxis extends PureComponent {
   }
 
   render() {
-    let margin = this.props.margin
+    let height = this.props.params.height
+    let margin = this.props.params.margin
     let year = this.props.months[0].date.getFullYear()
     return (
-      <g transform={`translate(0,${this.props.height - margin.bottom + 22})`}>
+      <g transform={`translate(0,${height - margin.bottom + 22})`}>
         {this.renderAxisData()}
         <text className="text-year" y="22" x="16">{year}</text>
       </g>

@@ -72,6 +72,7 @@ export default class Chart extends Component {
 
   render() {
     let currData = this.state.data[this.state.currIndex]
+    let chartTransform = `translate(${margin.left}, ${margin.top})`
     return (
       <div>
         <div className="main">
@@ -82,12 +83,15 @@ export default class Chart extends Component {
             <g transform={`translate(0,0)`}>
               <rect className="main-rect__fill" width={width} height={height}/>
             </g>
-            <g transform={`translate(${margin.left}, ${margin.top})`}>
-              <HorizontalLines maxY={80} tick={20} height={height} width={width} margin={margin}/>
-              <XAxis months={this.state.months} height={height} width={width} margin={margin}/>
+            <g transform={chartTransform}>
+              <HorizontalLines maxY={80} tick={20} params={params}/>
+              <XAxis months={this.state.months} params={params}/>
               <LinePath data={this.state.data}
                         timeScale={this.timeScale}
                         lineScale={this.lineScale}/>
+
+            </g>
+            <g transform={chartTransform}>
               <ShouldUpdateTooltip coordinates={this.state.coordinates}
                                    params={params}
                                    timeScale={this.timeScale}

@@ -18,13 +18,16 @@ const renderLineTicks = (maxY, tick, lineScale, lineWidth) => {
 export default class HorizontalLines extends PureComponent {
   constructor(props) {
     super(props)
+    let margin = this.props.params.margin
+    let height = this.props.params.height
     this.lineScale = new LineScale()
-      .setDomain([0, this.props.maxY]).setRange([this.props.height - this.props.margin.bottom, this.props.margin.top])
+      .setDomain([0, this.props.maxY]).setRange([height - margin.bottom, margin.top])
   }
 
   render() {
-    let margin = this.props.margin
-    let lineWidth = this.props.width - margin.left - margin.right
+    let margin = this.props.params.margin
+    let width = this.props.params.width
+    let lineWidth = width - margin.left - margin.right
     return (
       <g fill="none"
          className="text-font">

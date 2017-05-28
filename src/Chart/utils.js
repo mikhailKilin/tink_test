@@ -78,7 +78,8 @@ export const generateData = () => {
   for (let startDate = new Date(2015, 0, 1).getTime(); startDate <= endDate; startDate += incr) {
     retArray.push({
       value: Math.random() * 80,
-      date: new Date(startDate)
+      date: new Date(startDate),
+      percents: Math.random() * 10
     })
   }
   return retArray

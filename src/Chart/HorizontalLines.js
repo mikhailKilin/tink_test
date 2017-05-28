@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {LineScale} from './utils'
 
 const renderLineTicks = (maxY, tick, lineScale, lineWidth) => {
@@ -9,13 +9,13 @@ const renderLineTicks = (maxY, tick, lineScale, lineWidth) => {
   return numbTicks.map(currTick => {
     return (
       <g key={currTick} className="tick" opacity="1" transform={`translate(0,${lineScale.map(currTick)})`}>
-        <line className="horizontal-line" stroke="#000" x2={lineWidth}></line>
+        <line className="horizontal-line" x2={lineWidth}></line>
         <text className="text-font" fill="#000" textAnchor="end" x="-12">{currTick}</text>
       </g>
     )
   })
 }
-export default class HorizontalLines extends Component {
+export default class HorizontalLines extends PureComponent {
   constructor(props) {
     super(props)
     this.lineScale = new LineScale()

@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {LineScale} from './utils'
-export default class XAxis extends Component {
+export default class XAxis extends PureComponent {
   constructor(props) {
     super(props)
     let margin = this.props.margin

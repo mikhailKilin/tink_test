@@ -16,7 +16,7 @@ const getXYCoord = (x, y, params) => {
     yIncr = -tooltipHeight - 10
   }
   if (x + tooltipWidth >= (params.width - params.margin.left - params.margin.right)) {
-    xIncr = -135
+    xIncr = -tooltipWidth - 5
   } else {
     xIncr = +5
   }

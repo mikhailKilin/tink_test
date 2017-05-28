@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 import Tooltip from './Tooltip'
 import shouldUpdateHOC from './ShouldUpdateHOC'
-import {TimeScale, LineScale, max} from './utils'
+import {TimeScale, LineScale} from './utils'
 import StaticRect from './StaticRect'
 import GraphGroup from './GraphGroup'
 import {generateData, months} from './data'

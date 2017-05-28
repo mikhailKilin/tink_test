@@ -71,7 +71,4 @@ export class LineScale {
   }
 }
 
-export const max = (data) => {
-  return Math.max.apply(null, data)
-}
 

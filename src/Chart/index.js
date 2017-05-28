@@ -2,14 +2,15 @@ import React, {Component} from 'react'
 import HorizontalLines from './HorizontalLines'
 import XAxis from './XAxis'
 import LinePath from './LinePath'
-import TooltipDot from './Tooltip'
-import { TimeScale, LineScale, max} from './utils'
-import { generateData, months } from './data'
+import Tooltip from './Tooltip'
+import shouldUpdateHOC from './ShouldUpdateHOC'
+import {TimeScale, LineScale, max} from './utils'
+import {generateData, months} from './data'
 import './styles.css'
 const margin = {
   top: 12, right: 20, bottom: 88, left: 35
 }
-
+const ShouldUpdateTooltip = shouldUpdateHOC(Tooltip, ["coordinates"])
 const height = 300;
 const width = 864
 const params = {
@@ -51,15 +52,17 @@ export default class Chart extends Component {
     mouseCoordinates.x = mouseCoordinates.x - margin.left
     if (mouseCoordinates.x >= 0 && mouseCoordinates.x <= width - margin.left - margin.right) {
       let tooltipIndex = Math.ceil(this.reverseTimeScale.map(mouseCoordinates.x) - 0.5)
-      let currDot = this.state.data[tooltipIndex]
-      let coordinates = {
-        x: this.timeScale.map(currDot.date),
-        y: this.lineScale.map(currDot.value)
+      if (tooltipIndex !== this.state.currIndex) {
+        let currDot = this.state.data[tooltipIndex]
+        let coordinates = {
+          x: this.timeScale.map(currDot.date),
+          y: this.lineScale.map(currDot.value)
+        }
+        this.setState({
+          coordinates: coordinates,
+          currIndex: tooltipIndex
+        })
       }
-      this.setState({
-        coordinates: coordinates,
-        currIndex: tooltipIndex
-      })
     } else {
       this.setState({
         coordinates: null
@@ -85,10 +88,10 @@ export default class Chart extends Component {
               <LinePath data={this.state.data}
                         timeScale={this.timeScale}
                         lineScale={this.lineScale}/>
-              <TooltipDot coordinates={this.state.coordinates}
-                          params={params}
-                          timeScale={this.timeScale}
-                          data={currData}
+              <ShouldUpdateTooltip coordinates={this.state.coordinates}
+                                   params={params}
+                                   timeScale={this.timeScale}
+                                   data={currData}
               />
             </g>
           </svg>

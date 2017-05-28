@@ -1,7 +1,7 @@
 import React from 'react'
 import TooltipInfo from './TooltipInfo'
 
-const tooltipDot = ({coordinates, params, data}) => {
+const tooltip = ({coordinates, params, data}) => {
   if (coordinates === null) {
     return null
   } else {
@@ -17,4 +17,4 @@ const tooltipDot = ({coordinates, params, data}) => {
   }
 }
 
-export default tooltipDot
+export default tooltip

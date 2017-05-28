@@ -24,8 +24,10 @@
     stroke-opacity: 0.7;
     shape-rendering: geometricPrecision;
 }
-
-.circle_fill {
+.circle_outer {
+    fill: rgb(246, 247, 248);
+}
+.circle_inner {
     fill: rgb(118, 164, 197);
 }
 

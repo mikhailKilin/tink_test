@@ -9,8 +9,8 @@ const tooltip = ({coordinates, params, data}) => {
       <g transform={`translate(${coordinates.x}, ${coordinates.y})`}>
         <line y2={params.height - coordinates.y - params.margin.bottom}
               className="tooltip__line"></line>
-        <circle r="5" fillOpacity="1" fill="rgb(246, 247, 248)"/>
-        <circle r="3" className="circle_fill"/>
+        <circle r="5" className="circle_outer"/>
+        <circle r="3" className="circle_inner"/>
         {TooltipInfo(coordinates, params, data)}
       </g>
     )

@@ -1,16 +1,20 @@
 import React, {Component} from 'react'
-import HorizontalLines from './HorizontalLines'
-import XAxis from './XAxis'
-import LinePath from './LinePath'
+
 import Tooltip from './Tooltip'
 import shouldUpdateHOC from './ShouldUpdateHOC'
 import {TimeScale, LineScale, max} from './utils'
+import StaticRect from './StaticRect'
+import GraphGroup from './GraphGroup'
 import {generateData, months} from './data'
 import './styles.css'
+
+const ShouldUpdateTooltip = shouldUpdateHOC(Tooltip, ["coordinates"])
+const ShouldUpdateStaticRect = shouldUpdateHOC(StaticRect, ["height", "width"])
+const ShouldUpdateGraphGroup= shouldUpdateHOC(GraphGroup, ["data"])
+
 const margin = {
   top: 12, right: 20, bottom: 88, left: 35
 }
-const ShouldUpdateTooltip = shouldUpdateHOC(Tooltip, ["coordinates"])
 const height = 300;
 const width = 864
 const params = {
@@ -80,17 +84,13 @@ export default class Chart extends Component {
                onMouseMove={this.mouseMove}
                ref={container => this.svg = container}
                cursor="pointer">
-            <g transform={`translate(0,0)`}>
-              <rect className="main-rect__fill" width={width} height={height}/>
-            </g>
-            <g transform={chartTransform}>
-              <HorizontalLines maxY={80} tick={20} params={params}/>
-              <XAxis months={this.state.months} params={params}/>
-              <LinePath data={this.state.data}
-                        timeScale={this.timeScale}
-                        lineScale={this.lineScale}/>
-
-            </g>
+            <ShouldUpdateStaticRect width={width} height={height}/>
+            <ShouldUpdateGraphGroup chartTransform={chartTransform}
+                                    params={params}
+                                    months={months}
+                                    data={this.state.data}
+                                    timeScale={this.timeScale}
+                                    lineScale={this.lineScale}/>
             <g transform={chartTransform}>
               <ShouldUpdateTooltip coordinates={this.state.coordinates}
                                    params={params}

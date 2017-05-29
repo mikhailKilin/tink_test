@@ -9,6 +9,7 @@
   "devDependencies": {
     "react-scripts": "1.0.6"
   },
+  "homepage" : "http://mikhailKilin.github.io/tink_test",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
